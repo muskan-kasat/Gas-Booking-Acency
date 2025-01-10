@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        background-color: #f7c4c4;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: black;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h2>Your Booking History</h2>
+    <table id="bookingTable">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Booking ID</th>
+                <th>Number</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Booking history rows will be dynamically inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        // Sample booking history data (replace with data from backend if needed)
+        const bookingHistory = [
+            { id: 'B1234', service: '1', date: '2024-12-25', status: 'Confirmed' },
+            { id: 'B5678', service: '1', date: '2024-9-30', status: 'Confirmed' },
+            { id: 'B9101', service: '2', date: '2024-5-15', status: 'Confirmed' }
+        ];
+
+        // Populate the booking history table
+        function loadBookingHistory() {
+            const tableBody = document.getElementById('bookingTable').querySelector('tbody');
+            tableBody.innerHTML = ''; // Clear existing rows
+
+            bookingHistory.forEach((booking, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${booking.id}</td>
+                    <td>${booking.service}</td>
+                    <td>${booking.date}</td>
+                    <td>${booking.status}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Load bookings on page load
+        document.addEventListener('DOMContentLoaded', loadBookingHistory)
+    </script>
+</body>
+</html>
